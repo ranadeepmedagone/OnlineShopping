@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineShopping.DTOs;
 using OnlineShopping.Models;
 using OnlineShopping.Repositories;
+using OnlineShopping.Models;
 
 namespace Dotsql.Controllers;
 
@@ -24,9 +25,9 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<CustomerDTO>>> GetAllCustomers()
+    public async Task<ActionResult<List<CustomerDTO>>> GetAllCustomers(CustomerParameter customerParameter)
     {
-        var CustomersList = await _Customer.GetList();
+        var CustomersList = await _Customer.GetAllCustomers(customerParameter);
 
         // Customer -> CustomerDTO
         var dtoList = CustomersList.Select(x => x.asDto);

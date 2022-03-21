@@ -67,7 +67,7 @@ public class OrderRepository : BaseRepository, IOrderRepository
           return  (await con.QueryAsync<Order>(query, new{CustomerId})).AsList();
        }
     }
-
+ 
     // public async Task<List<Order>> GetOrdersByProductId(long Id)
     // {
     //     var query = $@"SELECT * FROM ""{TableNames.order_product}"" op
