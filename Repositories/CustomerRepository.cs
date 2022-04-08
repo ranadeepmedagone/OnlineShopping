@@ -30,12 +30,9 @@ public class CustomerRepository : BaseRepository, ICustomerRepository
 
         List<Customer> res;
         using (var con = NewConnection)
-            res = (await con.QueryAsync<Customer>(query))
-            .Skip((customerParameter.PageNumber - 1) * customerParameter.PageSize)
-            .Take(customerParameter.PageSize)
-            .AsList();
+        res = (await con.QueryAsync<Customer>(query, new {Limit =  customerParameter.PageSize, Offset = Parameter.PageNumber  }))
 
-        return res;
+         return res;
     }
 
 
